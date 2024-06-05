@@ -147,6 +147,14 @@ var buildrule;
 {%- endfor %}
 </script>
 <style>
+.main-wrapper {
+  display: flex;
+}
+
+#byobApp {
+  flex: 2;
+}
+
 .lb-price {
   {% unless section.settings.show_product_price %}display: none;{% endunless %}
 }
