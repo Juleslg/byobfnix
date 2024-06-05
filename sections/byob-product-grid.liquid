@@ -341,17 +341,6 @@ select:focus { /* remove select focus style in card */
   max-height: {{ section.settings.max_image_height }}vh;
 }
 @media screen and (max-width: 1280px) {
-
-.byob-outer-container {
-  display: grid;
-  grid-template-columns: 2fr 1fr; /* 2/3 for the app, 1/3 empty */
-  width: 100%; /* Adjust width as needed */
-}
-
-.byob-empty-column {
-  /* Optional: style for the empty column if needed */
-}
-
   .byob-wrapper {
     grid-template-columns: repeat(auto-fill,minmax(135px,1fr));
     grid-auto-columns: minmax(135px,1fr);
@@ -557,7 +546,7 @@ div#tidio-chat {display: none;}
 iframe#ShopifyChat {display: none;}
 .sca-qv-button-wrap {display: none !important;}
 </style>
-<div class="byob-outer-container">
+
 <div id="byobApp" class="page-width byob-page-margin {{ wrapper-class }}">
   <template v-for="(buildrule, index) in buildrules">
     <tab v-show="showTab" :buildrule="buildrule" :index="index" :no-of-buildrules="buildrules.length" @click="buildrule.isActiveTab = !buildrule.isActiveTab"></tab>
@@ -614,10 +603,6 @@ iframe#ShopifyChat {display: none;}
 
   <subscription-modal v-if="showSubscriptionModel" :variants="selectedVariants" @close="showSubscriptionModel = false"
     @single-purchase-by-variant="() => {addToCart(); showSubscriptionModel = false}"></subscription-modal>
-</div>
-<div class="byob-empty-column">
-    <!-- This column will remain empty -->
-  </div>
 </div>
 
 
