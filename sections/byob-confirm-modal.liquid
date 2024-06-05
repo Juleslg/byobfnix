@@ -129,12 +129,14 @@
       }
     }
   }
-  var vm;
+  var byob_vm;
+  console.log('before vueApp undefined', vueApp)
   if (typeof vueApp === 'undefined')  // For a store, the vueApp is not initialized yet. This is a hack to load it after 1s
-  	setTimeout(function() {vueApp.component("modal", byob_modal); vm = vueApp.mount('#byobApp');}, 1000);
+  	setTimeout(function() {vueApp.component("modal", byob_modal); byob_vm = vueApp.mount('#byobApp');}, 1000);
   else {
     vueApp.component("modal", byob_modal);
-    vm = vueApp.mount('#byobApp');
+    byob_vm = vueApp.mount('#byobApp');
+    console.log('after vueApp mount', byob_vm)
   }
 </script>
 

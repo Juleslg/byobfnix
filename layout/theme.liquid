@@ -7,7 +7,7 @@
 	
 
   	
-    {% render 'elevar-head' %}
+    
     
     <meta name="google-site-verification" content="oEMlnmnci8Xs_QCDb_9ek-VJdmYea0LTazpeQxr3-gM">
     <meta name="google-site-verification" content="B-n71eUGwaxMr9h0QYQ_J5wPUhc1S8B8KxqIPVZwNgc">
@@ -79,7 +79,7 @@
 </script>
   <script async type='text/javascript' src='https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=VbiARM'></script>  
     
-  {% include 'trueroas_snippet' %} 
+  
   {% render 'shogun-head' %}
 </head>
 
@@ -100,7 +100,7 @@
   %}
 
   <body class="{{ features_class }}">
-  {% render 'elevar-body-end' %}
+  
     
     {%- render 'shadow-dom-templates' -%}
 
@@ -121,7 +121,7 @@
     {%- endif -%}
 
      {%- unless product.tags contains 'disablebis' -%}
-
+      {% if product.type != 'BYOB' %}
     <!-- Klaviyo Back in Stock | Ansprechpartner: thomas@thomas-grabner.com -->
       <script src="https://a.klaviyo.com/media/js/onsite/onsite.js"></script>
       <script>
@@ -165,7 +165,7 @@
          	}
         });
       </script>
-
+      {% endif %}
       {% endunless %}
     <!-- Gorgias Chat Widget Start -->
     <script id="gorgias-chat-widget-install-v2" src="https://config.gorgias.chat/gorgias-chat-bundle-loader.js?applicationId=27816"></script>

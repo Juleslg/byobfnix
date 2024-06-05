@@ -604,9 +604,9 @@ iframe#ShopifyChat {display: none;}
     @single-purchase-by-variant="() => {addToCart(); showSubscriptionModel = false}"></subscription-modal>
 </div>
 
-<!-- This will only render in the theme editor -->
 {% if request.design_mode %}
-<script src="https://unpkg.com/vue@next"></script>
+<!-- This will only render in the theme editor -->
+<script src="https://unpkg.com/vue@3.2.20/dist/vue.global.prod.js"></script>
 <script src="https://unpkg.com/mitt/dist/mitt.umd.js"></script>
 <script src="https://unpkg.com/vue-i18n@9.1.6/dist/vue-i18n.global.prod.js"></script>
 <script>
@@ -629,7 +629,7 @@ const themeEventHandler = (event) => {  // emit a generic version
 document.addEventListener('shopify:section:select', themeEventHandler);
 </script>
 {% else %}
-<script src="https://unpkg.com/vue@3.2.6/dist/vue.global.prod.js"></script>
+<script src="https://unpkg.com/vue@3.2.20/dist/vue.global.prod.js"></script>
 <script src="https://unpkg.com/vue-i18n@9.1.6/dist/vue-i18n.global.prod.js"></script>
 {% endif %}
 
@@ -814,7 +814,7 @@ document.addEventListener('shopify:section:select', themeEventHandler);
         return doc.body.textContent || "";
       },
       formatProductsData(products) { // fixed Shopify API not consistent for ajax call
-        for (product of products) {
+        for (let product of products) {
           if (product.images && product.images.length > 0)
             product.featured_image = product.images[0].src + '&width=480';
           // images & desc are for qv
@@ -823,7 +823,7 @@ document.addEventListener('shopify:section:select', themeEventHandler);
             product.images[i] = image.src + '&width=480'
           })
           product.description = this.stripHtml(product.body_html)
-          for (variant of product.variants) {
+          for (let variant of product.variants) {
             variant.name = (variant.title !== 'Default Title')? product.title + ' - ' + variant.title : product.title;
             variant.price *= 100;
             let options = [];
@@ -922,12 +922,12 @@ document.addEventListener('shopify:section:select', themeEventHandler);
             item.optional = true
           purchasedItems.push(item)
         });
-        for (variant of variants) {
+        for (let variant of variants) {
           let buildRuleID = this.buildrules[variant.buildrulesIndex].id
           let item = purchasedItems.find(item => item.buildRuleID == buildRuleID)
           if (item)
             if (item.variants) {
-              v = item.variants.find(obj => obj.variantID == variant.id)
+              let v = item.variants.find(obj => obj.variantID == variant.id)
               v ? v.quantity++ : item.variants.push({"variantID": variant.id, "quantity": 1});
             }
             else
@@ -1267,7 +1267,7 @@ document.addEventListener('shopify:section:select', themeEventHandler);
       
       <template v-else-if="filter.type === 'tags'">
           <div >
-            <label class="inline-block" style="padding-right:10px" v-if="">
+            <label class="inline-block" style="padding-right:10px">
             Filter by:
             </label>
     
@@ -1290,7 +1290,7 @@ document.addEventListener('shopify:section:select', themeEventHandler);
       },
       components: {
         {% if section.settings.enable_quickview -%}'quickview-modal': quickviewModal,{%- endif %}
-        'byob-reviews': (typeof byob_reviews === 'undefined')? '' : byob_reviews,
+        'byob-reviews': (typeof byob_reviews === 'undefined')? undefined : byob_reviews,
       },
       data() {
         return {
@@ -1459,7 +1459,7 @@ document.addEventListener('shopify:section:select', themeEventHandler);
         }
       },
       template: `
-		<div class="grid-product" v-if="product.type !== 'BYOB' && product.vendor !== 'BYOB'"">
+		<div class="grid-product" v-if="product.type !== 'BYOB' && product.vendor !== 'BYOB'">
 			<div class="byob-product-image-container">
             	<img :src="featureImage" :alt="[[ product.title]]" @mouseenter="showQuickviewIcon = enableQuickview" @mouseleave="showQuickviewIcon = false" class="m-auto" style="display:block">
 
