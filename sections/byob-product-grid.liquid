@@ -148,12 +148,11 @@ var buildrule;
 </script>
 <style>
 .main-wrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
 }
 
-#byobApp {
-  flex: 2;
-}
+
 
 .lb-price {
   {% unless section.settings.show_product_price %}display: none;{% endunless %}
