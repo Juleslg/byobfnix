@@ -147,6 +147,61 @@ var buildrule;
 {%- endfor %}
 </script>
 <style>
+
+.sidecart {
+    width: 100%;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 20px;
+  }
+
+  .sidecart-header {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+  }
+
+  .sidecart-items {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  .sidecart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .sidecart-item-info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .sidecart-item-title {
+    flex: 1;
+  }
+
+  .sidecart-item-delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 8px;
+  }
+
+  .sidecart-submit {
+    width: 100%;
+    background: #1878b9;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
   #byobApp {
     padding-left: 1rem;
     padding-right: 1rem;
@@ -589,10 +644,11 @@ iframe#ShopifyChat {display: none;}
               @addcart="addToCart" @opennote="showNoteModal = true" @opensubscription="showSubscriptionModel = true" :completed-tier="completedTier"
               :next-tier="nextTier" :is-tier="isTier" :price-with-currency="priceWithCurrency" ref="footerBar"></footer-bar>
 
-              <side-cart :variants="selectedVariants" :buildrules="buildrules" :is-loading="isLoading" @deleted="removeVariant"
+   <side-cart :variants="selectedVariants" :buildrules="buildrules" :is-loading="isLoading" @deleted="removeVariant"
               @addcart="addToCart" :completed-tier="completedTier" :next-tier="nextTier" :is-tier="isTier"
               :price-with-currency="priceWithCurrency"></side-cart>
  
+
 
               
   <modal v-if="showModal" @close="showModal = false">
@@ -1889,11 +1945,6 @@ document.addEventListener('shopify:section:select', themeEventHandler);
   const SideCart = {
     emits: ['deleted', 'addcart'],
     props: ['variants', 'buildrules', 'isLoading', 'completedTier', 'nextTier', 'isTier', 'priceWithCurrency'],
-    data() {
-      return {
-        hide: false,
-      };
-    },
     computed: {
       totalVariants() {
         return this.variants.length;
@@ -1959,46 +2010,36 @@ document.addEventListener('shopify:section:select', themeEventHandler);
       },
     },
     template: `
-    <teleport to=".byob-outer-container">
-    <div class="sidecart" v-if="totalVariants > 0 && !hide">
-      <button class="sidecart-close" @click="hide = true">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
-
-      <div class="sidecart-header">
-        <h2>Your Bundle</h2>
-        <p>Total Price: [[ footerTotalPrice ]]</p>
-        <p v-if="totalPrice > bundlePrice && buildrulesCompleted">Saved: [[ priceWithCurrency(totalPrice - bundlePrice) ]]</p>
-      </div>
-
-      <div class="sidecart-items">
-        <div v-for="(variant, index) in groupedVariants" :key="variant.id" class="sidecart-item">
-          <div class="sidecart-item-info">
-            <p class="sidecart-item-title">[[ variant.name ]]</p>
-            <button @click="$emit('deleted', variant.id)" class="sidecart-item-delete">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+      <teleport to=".byob-outer-container">
+        <div class="sidecart">
+          <div class="sidecart-header">
+            <h2>Your Bundle</h2>
+            <p>Total Price: [[ footerTotalPrice ]]</p>
+            <p v-if="totalPrice > bundlePrice && buildrulesCompleted">Saved: [[ priceWithCurrency(totalPrice - bundlePrice) ]]</p>
           </div>
-          <p class="sidecart-item-variant">Variant: [[ variant.options.join(', ') ]]</p>
+
+          <div class="sidecart-items">
+            <div v-for="(variant, index) in groupedVariants" :key="variant.id" class="sidecart-item">
+              <div class="sidecart-item-info">
+                <p class="sidecart-item-title">[[ variant.name ]]</p>
+                <button @click="$emit('deleted', variant.id)" class="sidecart-item-delete">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <p class="sidecart-item-variant">Variant: [[ variant.options.join(', ') ]]</p>
+            </div>
+          </div>
+
+          <button @click.prevent="addBundleToCart" class="sidecart-submit" :class="{disabled: isLoading}">
+            <span v-if="isLoading">
+              <i class="fa fa-circle-o-notch fa-spin"></i> [[ $t('message.loading') ]]
+            </span>
+            <span v-else>[[ buttonText ]]</span>
+          </button>
         </div>
-      </div>
-
-      <button @click.prevent="addBundleToCart" class="sidecart-submit" :class="{disabled: isLoading}">
-        <span v-if="isLoading">
-          <i class="fa fa-circle-o-notch fa-spin"></i> [[ $t('message.loading') ]]
-        </span>
-        <span v-else>[[ buttonText ]]</span>
-      </button>
-    </div>
-
-    <div class="sidecart-toggle" v-if="hide" @click="hide = false">
-      <span>Show Bundle</span>
-    </div>
-  </teleport>
+      </teleport>
     `
   };
 </script>
