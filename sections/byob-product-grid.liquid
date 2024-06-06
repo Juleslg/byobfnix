@@ -1955,7 +1955,7 @@ document.addEventListener('shopify:section:select', themeEventHandler);
       },
     },
     template: `
-    <teleport to="#byobApp">
+    <teleport to=".byob-outer-container">
     <div class="sidecart" v-if="totalVariants > 0 && !hide">
       <button class="sidecart-close" @click="hide = true">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
