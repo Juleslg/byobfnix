@@ -589,6 +589,12 @@ iframe#ShopifyChat {display: none;}
               @addcart="addToCart" @opennote="showNoteModal = true" @opensubscription="showSubscriptionModel = true" :completed-tier="completedTier"
               :next-tier="nextTier" :is-tier="isTier" :price-with-currency="priceWithCurrency" ref="footerBar"></footer-bar>
 
+              <side-cart :variants="selectedVariants" :buildrules="buildrules" :is-loading="isLoading" @deleted="removeVariant"
+              @addcart="addToCart" :completed-tier="completedTier" :next-tier="nextTier" :is-tier="isTier"
+              :price-with-currency="priceWithCurrency"></side-cart>
+ 
+
+              
   <modal v-if="showModal" @close="showModal = false">
     <!-- use custom content here to overwrite default content -->
     <template v-slot:body>
