@@ -148,6 +148,11 @@ var buildrule;
 </script>
 <style>
 
+  .byob-outer-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+  }
+
 .lb-price {
   {% unless section.settings.show_product_price %}display: none;{% endunless %}
 }
