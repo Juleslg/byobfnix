@@ -630,6 +630,7 @@ function remountVueApp() {
   	vueApp.component('tab', tab);
     vueApp.component('product-card', productCard);
     vueApp.component('footer-bar', footerBar);
+    vueApp.component('side-cart', SideCart);
   	vueApp.use(i18n);
     vm = vueApp.mount('#byobApp')
 }
@@ -1879,6 +1880,123 @@ document.addEventListener('shopify:section:select', themeEventHandler);
   });
   vueApp.use(i18n);
   
+</script>
+<script>
+  const SideCart = {
+    emits: ['deleted', 'addcart'],
+    props: ['variants', 'buildrules', 'isLoading', 'completedTier', 'nextTier', 'isTier', 'priceWithCurrency'],
+    data() {
+      return {
+        hide: false,
+      };
+    },
+    computed: {
+      totalVariants() {
+        return this.variants.length;
+      },
+      groupedVariants() {
+        let variants = this.variants;
+        let reducedArr = variants.reduce((acc, cur) => {
+          if (acc[cur.id]) {
+            acc[cur.id].quantity++;
+          } else {
+            cur.quantity = 1;
+            acc[cur.id] = cur;
+          }
+          return acc;
+        }, {});
+        return Object.values(reducedArr);
+      },
+      footerTotalPrice() {
+        return this.priceWithCurrency(this.totalPrice);
+      },
+      totalPrice() {
+        return this.variants.reduce((a, variant) => a + variant.price / 100.0, 0);
+      },
+      bundlePrice() {
+        if (!this.buildrulesCompleted) return false;
+        if (this.discount) {
+          if (this.discount.type === 'PR') return this.discount.value;
+          if (this.discount.type === 'PC') return this.totalPrice - (this.totalPrice * this.discount.value / 100);
+          if (this.discount.type === 'FA') return this.totalPrice - this.discount.value;
+        }
+        return this.totalPrice;
+      },
+      buildrulesCompleted() {
+        return this.buildrules.every(buildrule => buildrule.isCompleted || buildrule.optional);
+      },
+      buttonText() {
+        if (this.isLoading) return this.$t('message.loading');
+        if (this.itemsLeft <= 0) {
+          return this.$t('message.addBundleToCart') + ' (' + this.priceWithCurrency(this.bundlePrice) + ')';
+        } else if (this.itemsLeft == 1) {
+          let brLeft = this.getRemainingBuildrule();
+          return this.buildrules.length >= 2 && brLeft
+            ? this.$t('message.addMoreFrom', { title: brLeft.title })
+            : this.$tc('message.addMore', 1);
+        } else {
+          return this.$tc('message.addMore', 2, { quantity: this.itemsLeft });
+        }
+      },
+      itemsLeft() {
+        return this.buildrules.reduce((a, buildrule) => {
+          if (buildrule.optional || buildrule.isCompleted) return a + 0;
+          else if (buildrule.operator === '<=') return a + Math.min(1, buildrule.remaining_quantity);
+          else return a + buildrule.remaining_quantity;
+        }, 0);
+      },
+    },
+    methods: {
+      addBundleToCart() {
+        if (this.buildrulesCompleted) this.$emit('addcart');
+      },
+      getRemainingBuildrule() {
+        return this.buildrules.find(buildrule => !buildrule.isCompleted && !buildrule.optional);
+      },
+    },
+    template: `
+    <teleport to="#byobApp">
+    <div class="sidecart" v-if="totalVariants > 0 && !hide">
+      <button class="sidecart-close" @click="hide = true">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <div class="sidecart-header">
+        <h2>Your Bundle</h2>
+        <p>Total Price: [[ footerTotalPrice ]]</p>
+        <p v-if="totalPrice > bundlePrice && buildrulesCompleted">Saved: [[ priceWithCurrency(totalPrice - bundlePrice) ]]</p>
+      </div>
+
+      <div class="sidecart-items">
+        <div v-for="(variant, index) in groupedVariants" :key="variant.id" class="sidecart-item">
+          <div class="sidecart-item-info">
+            <p class="sidecart-item-title">[[ variant.name ]]</p>
+            <button @click="$emit('deleted', variant.id)" class="sidecart-item-delete">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <p class="sidecart-item-variant">Variant: [[ variant.options.join(', ') ]]</p>
+        </div>
+      </div>
+
+      <button @click.prevent="addBundleToCart" class="sidecart-submit" :class="{disabled: isLoading}">
+        <span v-if="isLoading">
+          <i class="fa fa-circle-o-notch fa-spin"></i> [[ $t('message.loading') ]]
+        </span>
+        <span v-else>[[ buttonText ]]</span>
+      </button>
+    </div>
+
+    <div class="sidecart-toggle" v-if="hide" @click="hide = false">
+      <span>Show Bundle</span>
+    </div>
+  </teleport>
+    `
+  };
 </script>
 
 {% schema %}
