@@ -549,6 +549,7 @@ iframe#ShopifyChat {display: none;}
 .sca-qv-button-wrap {display: none !important;}
 </style>
 
+<div class="byob-outer-container">
 <div id="byobApp" class="page-width byob-page-margin {{ wrapper-class }}">
   <template v-for="(buildrule, index) in buildrules">
     <tab v-show="showTab" :buildrule="buildrule" :index="index" :no-of-buildrules="buildrules.length" @click="buildrule.isActiveTab = !buildrule.isActiveTab"></tab>
@@ -605,6 +606,7 @@ iframe#ShopifyChat {display: none;}
 
   <subscription-modal v-if="showSubscriptionModel" :variants="selectedVariants" @close="showSubscriptionModel = false"
     @single-purchase-by-variant="() => {addToCart(); showSubscriptionModel = false}"></subscription-modal>
+</div>
 </div>
 
 
