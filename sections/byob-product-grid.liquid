@@ -1928,7 +1928,39 @@ document.addEventListener('shopify:section:select', themeEventHandler);
             </div>
 		  </div>
 		</teleport>
-      `
+    <teleport to=".byob-outer-container">
+        <div class="sidecart">
+          <div class="sidecart-header">
+            <h2>Your Bundle</h2>
+            <p>Total Price: [[ footerTotalPrice ]]</p>
+            <p v-if="totalPrice > bundlePrice && buildrulesCompleted">Saved: [[ priceWithCurrency(totalPrice - bundlePrice) ]]</p>
+          </div>
+
+          <div class="sidecart-items">
+            <p class="card-title" v-if="showVariantName">[[ variant.name ]]</p>
+            <div v-for="(variant, index) in groupedVariants" :key="variant.id" class="sidecart-item">
+              <div class="sidecart-item-info">
+                <p class="sidecart-item-title">[[ variant.name ]]</p>
+                <button @click="$emit('deleted', variant.id)" class="sidecart-item-delete">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <p class="sidecart-item-variant">Variant: [[ variant.options.join(', ') ]]</p>
+            </div>
+          </div>
+
+          <button @click.prevent="addBundleToCart" class="sidecart-submit" :class="{disabled: isLoading}">
+            <span v-if="isLoading">
+              <i class="fa fa-circle-o-notch fa-spin"></i> [[ $t('message.loading') ]]
+            </span>
+            <span v-else>[[ buttonText ]]</span>
+          </button>
+        </div>
+      </teleport>
+    `
+      
   };
   const ftb = vueApp.component('footer-bar', footerBar);
   // multi-langual support
@@ -2010,37 +2042,9 @@ document.addEventListener('shopify:section:select', themeEventHandler);
       },
     },
     template: `
-      <teleport to=".byob-outer-container">
-        <div class="sidecart">
-          <div class="sidecart-header">
-            <h2>Your Bundle</h2>
-            <p>Total Price: [[ footerTotalPrice ]]</p>
-            <p v-if="totalPrice > bundlePrice && buildrulesCompleted">Saved: [[ priceWithCurrency(totalPrice - bundlePrice) ]]</p>
-          </div>
-
-          <div class="sidecart-items">
-            <p class="card-title" v-if="showVariantName">[[ variant.name ]]</p>
-            <div v-for="(variant, index) in groupedVariants" :key="variant.id" class="sidecart-item">
-              <div class="sidecart-item-info">
-                <p class="sidecart-item-title">[[ variant.name ]]</p>
-                <button @click="$emit('deleted', variant.id)" class="sidecart-item-delete">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-              <p class="sidecart-item-variant">Variant: [[ variant.options.join(', ') ]]</p>
-            </div>
-          </div>
-
-          <button @click.prevent="addBundleToCart" class="sidecart-submit" :class="{disabled: isLoading}">
-            <span v-if="isLoading">
-              <i class="fa fa-circle-o-notch fa-spin"></i> [[ $t('message.loading') ]]
-            </span>
-            <span v-else>[[ buttonText ]]</span>
-          </button>
-        </div>
-      </teleport>
+      <div>
+        Hello
+      </div>
     `
   };
 
