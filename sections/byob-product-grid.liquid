@@ -1945,28 +1945,6 @@ document.addEventListener('shopify:section:select', themeEventHandler);
   const SideCart = {
     emits: ['deleted', 'addcart'],
     props: ['variants', 'buildrules', 'isLoading', 'completedTier', 'nextTier', 'isTier', 'priceWithCurrency'],
-    data() {
-      return {
-        bundlePutToCart: false,
-        showVariantName: true,
-        hide: false,
-        icon_type: icon_type,
-        beacon_color: beacon_color,
-        progressWidth: 0,  // width in %
-      }
-    },
-    watch: {
-      isLoading(val) {
-        if (val)
-          var progressTimer = setInterval(() => {
-            this.progressWidth += 10;
-            if (this.progressWidth >= 100) {
-				this.progressWidth = 100;
-            	clearInterval(progressTimer)
-      		}
-          }, 1000)
-      },
-    },
     computed: {
       totalVariants() {
         return this.variants.length;
@@ -2041,8 +2019,6 @@ document.addEventListener('shopify:section:select', themeEventHandler);
           </div>
 
           <div class="sidecart-items">
-
-            <p class="card-title" v-if="showVariantName">[[ variant.name ]]</p>
             <div v-for="(variant, index) in groupedVariants" :key="variant.id" class="sidecart-item">
               <div class="sidecart-item-info">
                 <p class="sidecart-item-title">[[ variant.name ]]</p>
