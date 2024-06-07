@@ -1569,14 +1569,7 @@ document.addEventListener('shopify:section:select', themeEventHandler);
                       [[ option.name ]]:
                   </label>
 
-                  {%- render 'variant-picker',
-                  product: product,
-                  form_id: product_form_id,
-                  update_url: update_url,
-                  hide_sold_out_variants: block.settings.hide_sold_out_variants,
-                  selector_type: block.settings.selector_type,
-                  color_selector_type: block.settings.color_selector_type,
-                  size_chart_page: block.settings.size_chart_page -%}
+                  
   
                   <select class="byob-max-w-full byob-gpo-select" v-model="selectedOptionValues[index]" @change="selectVariant">
                     <option disabled value="">[[ $t('message.pick') ]][[ option.name ]]</option>
