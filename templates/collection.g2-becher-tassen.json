@@ -42,18 +42,6 @@
     },
     "main": {
       "type": "main-collection",
-      "blocks": {
-        "button_f3aJ8N": {
-          "type": "button",
-          "settings": {
-            "text": "Hi there",
-            "link": "shopify:\/\/products\/becher-aberta"
-          }
-        }
-      },
-      "block_order": [
-        "button_f3aJ8N"
-      ],
       "custom_css": [
         ".badge--custom {background: white; color: #1c1c1c; padding: 3px 10px;}"
       ],
