@@ -154,9 +154,13 @@ LIQUID
   
   <div class="button-container">
     <div class="arrow-link">
-    <a href="{{ settings.arrow_link }}">
-      &#8592;
-    </a>
+    {% for block in section.blocks %}
+      {% if block.type == 'arrow' %}
+        <a href="{{ block.settings.link }}" style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.text_color }}; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='{{ block.settings.hover_background_color }}'" onmouseout="this.style.backgroundColor='{{ block.settings.background_color }}'">
+          &#8592;
+        </a>
+      {% endif %}
+    {% endfor %}
   </div>
   {% for block in section.blocks %}
     <a href="{{ block.settings.link }}" style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.text_color }}; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='{{ block.settings.hover_background_color }}'" onmouseout="this.style.backgroundColor='{{ block.settings.background_color }}'">
@@ -481,8 +485,8 @@ LIQUID
       }
     ],
     "blocks": [
-      {
-        "type": "button",
+    {
+      "type": "button",
       "name": "Button",
       "settings": [
         {
@@ -510,15 +514,41 @@ LIQUID
           "id": "hover_background_color",
           "label": "Button Hover Background Color"
         }
-        ]
-      }
-    ],
-    "presets": [
-      {
-        "name": "Default",
-        "category": "Collection pages"
-      }
-    ]
-  }
-  {% endschema %}
+      ]
+    },
+    {
+      "type": "arrow",
+      "name": "Arrow",
+      "settings": [
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Arrow Link"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Arrow Background Color"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Arrow Text Color"
+        },
+        {
+          "type": "color",
+          "id": "hover_background_color",
+          "label": "Arrow Hover Background Color"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Default",
+      "category": "Collection pages"
+    }
+  ]
+}
+{% endschema %}
   
