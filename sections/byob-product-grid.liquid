@@ -1563,7 +1563,7 @@ document.addEventListener('shopify:section:select', themeEventHandler);
             </div>
 
             <template class="" v-if="product.variants.length >= 1 && product.options[0] != 'Title' && product.variants[0].option1 != 'Default Title' && !product.is_variant">
-              <div class="byob-gpo-wrapper">
+              <div class="byob-gpo-wrapper" data-swatch-color-wrap>
                 <div :class="'byob-product-option' + (index+1)" v-for="(option, index) in product.options" class="byob-grid-product-options">
                   <label class="inline-block byob-gpo-label" style="padding-right:2px" v-if="option.name != 'default'">
                       [[ option.name ]]:
