@@ -72,21 +72,28 @@
             "text_color": "",
             "hover_background_color": "#cb2b2b"
           }
+        },
+        "button_jf8gpF": {
+          "type": "button",
+          "settings": {
+            "text": "Test Test",
+            "link": "",
+            "background_color": "#e93030",
+            "text_color": "",
+            "hover_background_color": ""
+          }
         }
       },
       "block_order": [
         "arrow_6f3VwR",
         "button_U7WNLD",
-        "button_4w6ddT"
+        "button_4w6ddT",
+        "button_jf8gpF"
       ],
       "custom_css": [
         ".badge--custom {background: white; color: #1c1c1c; padding: 3px 10px;}"
       ],
       "settings": {
-        "arrow_background_color": "#ea1616",
-        "arrow_text_color": "#761818",
-        "arrow_hover_background_color": "#da1f1f",
-        "arrow_link": "",
         "variant_collection": false,
         "hide_product_information": false,
         "products_per_page": 50,
