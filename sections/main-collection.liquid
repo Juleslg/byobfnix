@@ -109,13 +109,16 @@ CSS
     margin-bottom: 20px;
   }
   .button-container a {
-    border: none;
-    border-radius: 20px;
-   
+    border: 1px solid #000; /* Border of 1px */
+    border-radius: 20px; /* Rounded corners */
+    padding: 4px 20px; /* Padding of 4px top/bottom and 20px left/right */
+    margin: 10px; /* Margin of 10px */
     cursor: pointer;
+    text-decoration: none;
     transition: background-color 0.3s ease;
-    text-align: center; 
-    font-size: 12px;
+    text-align: center; /* Center the text */
+    font-size: 16px; /* Adjust font size if needed */
+    display: inline-block; /* Ensure the element respects padding and margin */
    
   }
 
