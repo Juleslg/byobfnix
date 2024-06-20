@@ -156,15 +156,20 @@ LIQUID
 
   
   <div class="button-container">
-    <div class="arrow-link">
-    {% for block in section.blocks %}
-      {% if block.type == 'arrow' %}
+  {% for block in section.blocks %}
+    {% if block.type == 'arrow' %}
+      <div class="arrow-link">
         <a href="{{ block.settings.link }}" style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.text_color }}; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='{{ block.settings.hover_background_color }}'" onmouseout="this.style.backgroundColor='{{ block.settings.background_color }}'">
-          &#8592;
+          {{ block.settings.text }}
         </a>
-      {% endif %}
-    {% endfor %}
-  </div>
+      </div>
+    {% elsif block.type == 'button' %}
+      <a href="{{ block.settings.link }}" style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.text_color }}; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='{{ block.settings.hover_background_color }}'" onmouseout="this.style.backgroundColor='{{ block.settings.background_color }}'">
+        {{ block.settings.text }}
+      </a>
+    {% endif %}
+  {% endfor %}
+</div>
   {% for block in section.blocks %}
     <a href="{{ block.settings.link }}" style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.text_color }}; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='{{ block.settings.hover_background_color }}'" onmouseout="this.style.backgroundColor='{{ block.settings.background_color }}'">
       {{ block.settings.text }}
