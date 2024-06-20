@@ -109,17 +109,17 @@ CSS
     margin-bottom: 20px;
   }
   .button-container a {
-    background-color: {{ settings.button_background_color }};
+    background-color: {{ block.settings.background_color }};
     border: none;
     border-radius: 20px;
     padding: 10px 20px;
     cursor: pointer;
     text-decoration: none;
-    color: {{ settings.button_text_color }};
+    color: {{ block.settings.text_color }};
     transition: background-color 0.3s ease;
   }
   .button-container a:hover {
-    background-color: {{ settings.button_hover_background_color }};
+    background-color: {{ block.settings.hover_background_color }};
   }
   .arrow-link {
     display: flex;
@@ -157,10 +157,10 @@ LIQUID
     </a>
   </div>
   <div class="button-container">
-    {% for block in section.blocks %}
-      <a href="{{ block.settings.link }}">{{ block.settings.text }}</a>
-    {% endfor %}
-  </div>
+  {% for block in section.blocks %}
+    <a href="{{ block.settings.link }}" style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.text_color }};">{{ block.settings.text }}</a>
+  {% endfor %}
+</div>
     {%- if collection.all_products_count == 0 -%}
       <div class="empty-state">
         <div class="prose">
@@ -288,21 +288,6 @@ LIQUID
     "class": "shopify-section--main-collection",
     "tag": "section",
     "settings": [
-      {
-        "type": "color",
-        "id": "button_background_color",
-        "label": "Button Background Color"
-      },
-      {
-        "type": "color",
-        "id": "button_text_color",
-        "label": "Button Text Color"
-      },
-      {
-        "type": "color",
-        "id": "button_hover_background_color",
-        "label": "Button Hover Background Color"
-      },
       {
         "type": "color",
         "id": "arrow_background_color",
@@ -495,18 +480,33 @@ LIQUID
     "blocks": [
       {
         "type": "button",
-        "name": "Button",
-        "settings": [
-          {
-            "type": "text",
-            "id": "text",
-            "label": "Button Text"
-          },
-          {
-            "type": "url",
-            "id": "link",
-            "label": "Button Link"
-          }
+      "name": "Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Button Text"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button Link"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Button Background Color"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Button Text Color"
+        },
+        {
+          "type": "color",
+          "id": "hover_background_color",
+          "label": "Button Hover Background Color"
+        }
         ]
       }
     ],
