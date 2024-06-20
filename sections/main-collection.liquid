@@ -110,8 +110,11 @@ CSS
   }
   .button-container a {
     
+  
+    background-color: {{ block.settings.background_color }};
+    color: {{ block.settings.text_color }};
     border-radius: 20px; /* Rounded corners */
-    padding: 4px 20px; /* Padding of 4px top/bottom and 20px left/right */
+    padding: 10px 20px; /* Padding of 10px top/bottom and 20px left/right */
     margin: 10px; /* Margin of 10px */
     cursor: pointer;
     text-decoration: none;
@@ -119,6 +122,8 @@ CSS
     text-align: center; /* Center the text */
     font-size: 16px; /* Adjust font size if needed */
     display: inline-block; /* Ensure the element respects padding and margin */
+    line-height: 1.5; /* Ensure the text is vertically centered */
+  
    
   }
 
