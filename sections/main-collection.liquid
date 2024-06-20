@@ -152,15 +152,15 @@ LIQUID
   <div class="v-stack gap-6 sm:gap-12">
 
   <div class="arrow-link">
-  <a href="{{ settings.arrow_link }}">
-    &#8592;
-  </a>
-</div>
-<div class="button-container">
-  {% for block in section.blocks %}
-    <a href="{{ block.settings.link }}">{{ block.settings.text }}</a>
-  {% endfor %}
-</div>
+    <a href="{{ settings.arrow_link }}">
+      &#8592;
+    </a>
+  </div>
+  <div class="button-container">
+    {% for block in section.blocks %}
+      <a href="{{ block.settings.link }}">{{ block.settings.text }}</a>
+    {% endfor %}
+  </div>
     {%- if collection.all_products_count == 0 -%}
       <div class="empty-state">
         <div class="prose">
