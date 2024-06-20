@@ -108,16 +108,37 @@ CSS
             margin-top: 20px;
             margin-bottom: 20px;
         }
-        .button-container button {
-            background-color: #f8d7da;
+        .button-container a {
+            background-color: {{ settings.button_background_color }};
             border: none;
             border-radius: 20px;
             padding: 10px 20px;
             cursor: pointer;
+            text-decoration: none;
+            color: {{ settings.button_text_color }};
             transition: background-color 0.3s ease;
         }
-        .button-container button:hover {
-            background-color: #f1b0b7;
+        .button-container a:hover {
+            background-color: {{ settings.button_hover_background_color }};
+        }
+
+        .arrow-link {
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+        }
+        .arrow-link a {
+            background-color: {{ settings.arrow_background_color }};
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            color: {{ settings.arrow_text_color }};
+            transition: background-color 0.3s ease;
+        }
+        .arrow-link a:hover {
+            background-color: {{ settings.arrow_hover_background_color }};
         }
 </style>
 
@@ -131,15 +152,15 @@ LIQUID
   
   <div class="v-stack gap-6 sm:gap-12">
 
-  <div class="button-container">
-        <button>Big Mugs</button>
-        <button>Small Mugs</button>
-        <button>Big Cups</button>
-        <button>Small Cups</button>
-        <button>Espresso Mugs</button>
-        <button>Espresso Cups</button>
-        <button>Cups & Mugs Sets</button>
-        <button>Saucer</button>
+  <div class="arrow-link">
+        <a href="{{ settings.arrow_link }}">
+            &#8592;
+        </a>
+    </div>
+    <div class="button-container">
+        {% for button in settings.buttons %}
+            <a href="{{ button.link }}">{{ button.text }}</a>
+        {% endfor %}
     </div>
     {%- if collection.all_products_count == 0 -%}
       <div class="empty-state">
@@ -268,6 +289,63 @@ LIQUID
   "class": "shopify-section--main-collection",
   "tag": "section",
   "settings": [
+      {
+    "name": "Button Settings",
+    "settings": [
+      {
+        "type": "color",
+        "id": "button_background_color",
+        "label": "Button Background Color"
+      },
+      {
+        "type": "color",
+        "id": "button_text_color",
+        "label": "Button Text Color"
+      },
+      {
+        "type": "color",
+        "id": "button_hover_background_color",
+        "label": "Button Hover Background Color"
+      },
+      {
+        "type": "color",
+        "id": "arrow_background_color",
+        "label": "Arrow Background Color"
+      },
+      {
+        "type": "color",
+        "id": "arrow_text_color",
+        "label": "Arrow Text Color"
+      },
+      {
+        "type": "color",
+        "id": "arrow_hover_background_color",
+        "label": "Arrow Hover Background Color"
+      },
+      {
+        "type": "url",
+        "id": "arrow_link",
+        "label": "Arrow Link"
+      },
+      {
+        "type": "list",
+        "id": "buttons",
+        "label": "Buttons",
+        "settings": [
+          {
+            "type": "text",
+            "id": "text",
+            "label": "Button Text"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Button Link"
+          }
+        ]
+      }
+    ]
+  },
     {
       "type": "checkbox",
       "id": "variant_collection",
