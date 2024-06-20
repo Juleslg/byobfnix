@@ -135,6 +135,9 @@ CSS
     text-decoration: none;
     color: {{ settings.arrow_text_color }};
     transition: background-color 0.3s ease;
+    font-size: 24px;
+    padding: 5px 15px;
+    border-radius: 50%;
   }
   .arrow-link a:hover {
     background-color: {{ settings.arrow_hover_background_color }};
@@ -157,7 +160,7 @@ LIQUID
     {% for block in section.blocks %}
       {% if block.type == 'arrow' %}
         <a href="{{ block.settings.link }}" style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.text_color }}; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='{{ block.settings.hover_background_color }}'" onmouseout="this.style.backgroundColor='{{ block.settings.background_color }}'">
-          &#8592;
+          {{ block.settings.text }}
         </a>
       {% endif %}
     {% endfor %}
@@ -520,6 +523,12 @@ LIQUID
       "type": "arrow",
       "name": "Arrow",
       "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Arrow Text",
+          "default": "<"
+        },
         {
           "type": "url",
           "id": "link",
