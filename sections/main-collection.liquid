@@ -162,12 +162,6 @@ LIQUID
     {% endif %}
   {% endfor %}
 </div>
-  {% for block in section.blocks %}
-    <a href="{{ block.settings.link }}" style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.text_color }}; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='{{ block.settings.hover_background_color }}'" onmouseout="this.style.backgroundColor='{{ block.settings.background_color }}'">
-      {{ block.settings.text }}
-    </a>
-  {% endfor %}
-</div>
     {%- if collection.all_products_count == 0 -%}
       <div class="empty-state">
         <div class="prose">
