@@ -47,7 +47,10 @@
           "type": "button",
           "settings": {
             "text": "Hi there",
-            "link": ""
+            "link": "shopify:\/\/collections\/aberta",
+            "background_color": "#e9adad",
+            "text_color": "",
+            "hover_background_color": ""
           }
         }
       },
@@ -58,9 +61,6 @@
         ".badge--custom {background: white; color: #1c1c1c; padding: 3px 10px;}"
       ],
       "settings": {
-        "button_background_color": "#f43232",
-        "button_text_color": "#d90c0c",
-        "button_hover_background_color": "#891b1b",
         "arrow_background_color": "#ea1616",
         "arrow_text_color": "#761818",
         "arrow_hover_background_color": "#da1f1f",
