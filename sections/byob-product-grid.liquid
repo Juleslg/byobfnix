@@ -1570,7 +1570,7 @@ document.addEventListener('shopify:section:select', themeEventHandler);
                   </label>
                   <select class="byob-max-w-full byob-gpo-select" v-model="selectedOptionValues[index]" @change="selectVariant">
                     <option disabled value="">[[ $t('message.pick') ]][[ option.name ]]</option>
-                    <option v-for="value in option.values"  v-bind:value="value" data-swatch-color>
+                    <option v-for="value in option.values"  v-bind:value="value" data-swatch-color="[[ value ]]">
                       [[ value ]]
                     </option>
                   </select>
