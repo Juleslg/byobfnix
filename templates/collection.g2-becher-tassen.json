@@ -52,10 +52,21 @@
             "text_color": "",
             "hover_background_color": ""
           }
+        },
+        "button_4w6ddT": {
+          "type": "button",
+          "settings": {
+            "text": "Hola Chica",
+            "link": "shopify:\/\/products\/becher-klassik",
+            "background_color": "#e9adad",
+            "text_color": "",
+            "hover_background_color": "#ffffff"
+          }
         }
       },
       "block_order": [
-        "button_U7WNLD"
+        "button_U7WNLD",
+        "button_4w6ddT"
       ],
       "custom_css": [
         ".badge--custom {background: white; color: #1c1c1c; padding: 3px 10px;}"
