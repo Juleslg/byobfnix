@@ -97,6 +97,27 @@ CSS
         --collection-items-per-row-large: 3;
       {%- endif -%}
     }
+
+    .button-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .button-container button {
+            background-color: #f8d7da;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button-container button:hover {
+            background-color: #f1b0b7;
+        }
+
   }
 </style>
 
@@ -110,7 +131,16 @@ LIQUID
   
   <div class="v-stack gap-6 sm:gap-12">
 
-  <div>Hi beauty</div>
+  <div class="button-container">
+        <button>Big Mugs</button>
+        <button>Small Mugs</button>
+        <button>Big Cups</button>
+        <button>Small Cups</button>
+        <button>Espresso Mugs</button>
+        <button>Espresso Cups</button>
+        <button>Cups & Mugs Sets</button>
+        <button>Saucer</button>
+    </div>
     {%- if collection.all_products_count == 0 -%}
       <div class="empty-state">
         <div class="prose">
