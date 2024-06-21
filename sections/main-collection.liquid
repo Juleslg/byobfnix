@@ -155,8 +155,8 @@ LIQUID
   {% for block in section.blocks %}
     {% if block.type == 'arrow' %}
       <div class="arrow-link">
-        <a href="{{ block.settings.link }}" style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.text_color }}; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='{{ block.settings.hover_background_color }}'" onmouseout="this.style.backgroundColor='{{ block.settings.background_color }}'">
-          {{ block.settings.text }}
+        <a href="{{ block.settings.link }}" style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.text_color }}; border: 1px solid #000; padding: 10px 20px; transition: background-color 0.3s ease, color 0.3s ease;" onmouseover="this.style.backgroundColor='{{ block.settings.hover_background_color }}'; this.style.color='{{ block.settings.hover_text_color }}'" onmouseout="this.style.backgroundColor='{{ block.settings.background_color }}'; this.style.color='{{ block.settings.text_color }}'">
+            {{ block.settings.text }}
         </a>
       </div>
     {% elsif block.type == 'button' %}
