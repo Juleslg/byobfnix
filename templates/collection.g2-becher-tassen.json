@@ -43,17 +43,6 @@
     "main": {
       "type": "main-collection",
       "blocks": {
-        "arrow_6f3VwR": {
-          "type": "arrow",
-          "settings": {
-            "text": "<",
-            "link": "",
-            "background_color": "#ffffff",
-            "text_color": "",
-            "hover_background_color": "",
-            "hover_text_color": ""
-          }
-        },
         "button_U7WNLD": {
           "type": "button",
           "settings": {
@@ -89,7 +78,6 @@
         }
       },
       "block_order": [
-        "arrow_6f3VwR",
         "button_U7WNLD",
         "button_4w6ddT",
         "button_jf8gpF"
