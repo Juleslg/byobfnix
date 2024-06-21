@@ -160,9 +160,9 @@ LIQUID
         </a>
       </div>
     {% elsif block.type == 'button' %}
-      <a href="{{ block.settings.link }}" style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.text_color }}; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='{{ block.settings.hover_background_color }}'" onmouseout="this.style.backgroundColor='{{ block.settings.background_color }}'">
-        {{ block.settings.text }}
-      </a>
+      <a href="{{ block.settings.link }}" style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.text_color }}; transition: background-color 0.3s ease, color 0.3s ease;" onmouseover="this.style.backgroundColor='{{ block.settings.hover_background_color }}'; this.style.color='{{ block.settings.hover_text_color }}'" onmouseout="this.style.backgroundColor='{{ block.settings.background_color }}'; this.style.color='{{ block.settings.text_color }}'">
+            {{ block.settings.text }}
+          </a>
     {% endif %}
   {% endfor %}
 </div>
