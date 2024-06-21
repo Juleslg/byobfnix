@@ -58,9 +58,9 @@
           "settings": {
             "text": "Espresso",
             "link": "shopify:\/\/collections\/aberta",
-            "background_color": "#e9adad",
+            "background_color": "#ffffff",
             "text_color": "",
-            "hover_background_color": "#307a07"
+            "hover_background_color": "#1c1b1b"
           }
         },
         "button_4w6ddT": {
@@ -68,7 +68,7 @@
           "settings": {
             "text": "Small Mugs",
             "link": "shopify:\/\/products\/becher-klassik",
-            "background_color": "#e9adad",
+            "background_color": "#ffffff",
             "text_color": "",
             "hover_background_color": "#cb2b2b"
           }
