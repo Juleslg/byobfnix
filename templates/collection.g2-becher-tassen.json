@@ -72,8 +72,8 @@
             "link": "",
             "background_color": "#ffffff",
             "text_color": "",
-            "hover_background_color": "#ed8a00",
-            "hover_text_color": ""
+            "hover_background_color": "#000000",
+            "hover_text_color": "#ffffff"
           }
         }
       },
