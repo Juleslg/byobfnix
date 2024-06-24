@@ -279,15 +279,15 @@ LIQUID
                     {% assign displayed_colors = '' %}
                     {%- for variant in product.variants -%}
                       {%- assign color_option_index = product.options | index_of: 'Color' -%}
-                      {%- if color_option_index != blank and variant.options[color_option_index] != blank and displayed_colors contains variant.options[color_option_index] == false -%}
-                        {%- assign displayed_colors = displayed_colors | append: variant.options[color_option_index] | append: ',' -%}
-                        {%- render 'product-card-variant', product: product, variant: variant, reveal: settings.stagger_products_apparition, hide_product_information: section.settings.hide_product_information, stacked: true -%}
+                      {%- assign color_option = variant.options[color_option_index] -%}
+                      {%- if color_option_index != blank and color_option != blank -%}
+                        {%- unless displayed_colors contains color_option -%}
+                          {%- assign displayed_colors = displayed_colors | append: color_option | append: ',' -%}
+                          {%- render 'product-card-variant', product: product, variant: variant, reveal: settings.stagger_products_apparition, hide_product_information: section.settings.hide_product_information, stacked: true -%}
+                        {%- endunless -%}
                       {%- endif -%}
                     {%- endfor -%}
-                  {% else %}
-                    {%- render 'product-card', product: product, reveal: settings.stagger_products_apparition, hide_product_information: section.settings.hide_product_information, stacked: true -%}
-                  {% endif %}
-                {%- endfor -%}
+               
               </product-list>
 
               {%- render 'pagination', paginate: paginate, facet: true -%}
