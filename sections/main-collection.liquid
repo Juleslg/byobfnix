@@ -274,31 +274,41 @@ LIQUID
               {%- render 'active-facets', results: collection -%}
 
               <product-list id="product-list-{{ section.id }}" class="product-list" collection-mobile-layout="{{ products_mobile_grid_mode }}" collection-desktop-layout="{{ products_desktop_grid_mode }}">
-                {%- for product in collection.products -%}
-                  {%- liquid
-                    assign option_chosen = "Color" 
-                    assign option_index = ''
-                    for option in product.options
-                      if option_chosen == option
-                        assign option_index = forloop.index0 
-                        break
-                      endif
-                    endfor
-                  -%}
-                
-                  {% assign selected_variant = nil %}
-                
-                  {% for variant in product.variants %}
-                    {% if variant.options[option_index] == 'Your Desired Color' %}
-                      {% assign selected_variant = variant %}
-                      {% break %}
-                    {% endif %}
-                  {% endfor %}
-                
-                  {% if selected_variant != nil %}
-                    {%- render 'product-card-variant', product: product, variant: selected_variant, reveal: settings.stagger_products_apparition, hide_product_information: section.settings.hide_product_information, stacked: true -%}
-                  {% endif %}
-                {%- endfor -%}
+                %- for product in collection.products -%}
+  {%- liquid
+    assign option_chosen = "Color"
+    assign option_index = ''
+    for option in product.options
+      if option_chosen == option
+        assign option_index = forloop.index0
+        break
+      endif
+    endfor
+  -%}
+
+  {%- if option_index == '' -%}
+    {%- render 'product-card', product: product, reveal: settings.stagger_products_apparition, hide_product_information: section.settings.hide_product_information, stacked: true -%}
+  {%- else -%}
+    {% assign displayed_values = "" %}
+    {% for variant in product.variants %}
+      {%- liquid
+        assign variant_option = variant.options[option_index]
+        assign valueIsDisplayed = false
+        for value in displayed_values
+          if value == variant_option
+            assign valueIsDisplayed = true
+            break
+          endif
+        endfor
+      -%}
+      {% unless valueIsDisplayed %}
+        {%- assign variant_option_arr = variant_option | append: ';' | split: ';' -%}
+        {% assign displayed_values = displayed_values | concat: variant_option_arr %}
+        {%- render 'product-card-variant', product: product, variant: variant, reveal: settings.stagger_products_apparition, hide_product_information: section.settings.hide_product_information, stacked: true -%}
+      {% endunless %}
+    {% endfor %}
+  {%- endif -%}
+{%- endfor -%}
               </product-list>
 
               {%- render 'pagination', paginate: paginate, facet: true -%}
