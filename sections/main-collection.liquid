@@ -275,10 +275,7 @@ LIQUID
 
               <product-list id="product-list-{{ section.id }}" class="product-list" collection-mobile-layout="{{ products_mobile_grid_mode }}" collection-desktop-layout="{{ products_desktop_grid_mode }}">
                 {%- for product in collection.products -%}
-                  {% if product.variants.size == 1 %}
-                    {%- render 'product-card', product: product, reveal: settings.stagger_products_apparition, hide_product_information: section.settings.hide_product_information, stacked: true -%}
-                  {% else %}
-                    {% if section.settings.variant_collection %}
+                  
                       {% assign displayed_colors = '' %}
                       {%- for variant in product.variants -%}
                         {%- assign color_option_index = product.options.index_of('Color') -%}
@@ -286,7 +283,7 @@ LIQUID
                           {%- assign displayed_colors = displayed_colors | append: variant.options[color_option_index] | append: ',' -%}
                           {%- render 'product-card-variant', product: product, variant: variant, reveal: settings.stagger_products_apparition, hide_product_information: section.settings.hide_product_information, stacked: true -%}
                           {% break %}
-                        {%- endif -%}
+                        
                       {%- endfor -%}
               </product-list>
 
