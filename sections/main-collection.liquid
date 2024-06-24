@@ -274,7 +274,7 @@ LIQUID
               {%- render 'active-facets', results: collection -%}
 
               <product-list id="product-list-{{ section.id }}" class="product-list" collection-mobile-layout="{{ products_mobile_grid_mode }}" collection-desktop-layout="{{ products_desktop_grid_mode }}">
-                %- for product in collection.products -%}
+                {%- for product in collection.products -%}
   {%- liquid
     assign option_chosen = "Color"
     assign option_index = ''
