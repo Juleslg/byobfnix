@@ -160,7 +160,13 @@
         {%- if show_title or show_prices -%}
           <div class="v-stack  gap-1">
 
-           
+            {%- comment -%}
+              --------------------------------------------------------------------------------------------------------------------
+              edit to show only variants
+
+              break and assign funktion need to still be tested
+
+              v1 code:
 
               {% for variant in product.variants %}
               {% if variant.title == collection.title %}
@@ -173,7 +179,8 @@
               {%- endif -%}
               {%endfor%}
 
-           
+              --------------------------------------------------------------------------------------------------------------------
+            {%- endcomment -%}
 
             {%- if show_title -%}
               {% if section.settings.variant_collection %}
