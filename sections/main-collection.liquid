@@ -275,7 +275,9 @@ LIQUID
 
               <product-list id="product-list-{{ section.id }}" class="product-list" collection-mobile-layout="{{ products_mobile_grid_mode }}" collection-desktop-layout="{{ products_desktop_grid_mode }}">
                 {%- for product in collection.products -%}
-                  {%- render 'product-card', product: product, reveal: settings.stagger_products_apparition, hide_product_information: section.settings.hide_product_information, stacked: true -%}
+                  {% for variant in product.variants %}
+                    {%- render 'product-card-variant', product: product, variant: variant, reveal: settings.stagger_products_apparition, hide_product_information: section.settings.hide_product_information, stacked: true -%}
+                  {% endfor %}
                 {%- endfor -%}
               </product-list>
 
@@ -547,4 +549,3 @@ LIQUID
     ]
   }
 {% endschema %}
-  
