@@ -6,7 +6,7 @@
       if filter.max_value.value != blank or filter.min_value.value != blank
         assign active_values_count = active_values_count | plus: 1
       endif
-    else
+    else 
       assign active_values_count = active_values_count | plus: filter.active_values.size
     endif
   endfor
