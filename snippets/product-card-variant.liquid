@@ -50,7 +50,7 @@
   reveal-on-scroll="true"
   {% endif %}
   handle="{{ product.handle | escape }}">
-  
+
   {%- comment -%}
     --------------------------------------------------------------------------------------------------------------------
     PRODUCT MEDIA
@@ -157,51 +157,6 @@
           </div>
         {%- endif -%}
       </div>
-    {%- endif -%}
-
-    {%- if show_swatches and settings.product_color_display != 'hide' -%}
-      {%- assign color_label_list = 'general.label.color' | t | replace: ', ', ',' | downcase | split: ',' -%}
-
-      {%- for color_label in color_label_list -%}
-        {%- if product.options_by_name[color_label] != blank -%}
-          {%- assign product_option = product.options_by_name[color_label] -%}
-          {%- capture name -%}swatch-{{ section.id }}-{{ product.id }}-{{ product_option.position }}{%- endcapture -%}
-          {%- case settings.product_color_display -%}
-            {%- when 'count' -%}
-              <p class="smallcaps text-subdued">{{- 'product.general.available_colors_count' | t: count: product_option.values.size -}}</p>
-
-            {%- when 'swatch' -%}
-              <fieldset
-                class="h-stack wrap gap-1"
-                style="align-items: normal;"
-                data-option-position="{{ product_option.position }}">
-                {%- for option_value in product_option.values limit: 9 -%}
-                  {%- if forloop.first or product.selected_or_first_available_variant.matched and option_value == product_option.selected_value -%}
-                    {%- assign selected = true -%}
-                  {%- else -%}
-                    {% assign selected = false %}
-                  {%- endif -%}
-
-                  {%- render 'swatch' with 'color', value: option_value, name: name, selected: selected, size: 'sm' -%}
-
-                {%- endfor -%}
-                {%- assign color_count = product_option.values.size | minus: 9 -%}
-                {%- if product_option.values.size > 9 -%}
-                  <p class="smallcaps text-subdued" style="display: flex; align-items: center; color: inherit; margin-bottom: -2px;">
-                    <a style="padding-bottom: 2px; font-size: 12px;">+</a>
-                    <a class="hover-pointer" href="{{ product.url }}" style="font-size: 14px;">{{ color_count }}</a>
-                  </p>
-                {%- endif -%}
-              </fieldset>
-          {%- endcase -%}
-
-          {%- break -%}
-        {%- endif -%}
-      {%- endfor -%}
-    {%- endif -%}
-
-    {%- if show_rating -%}
-      {%- render 'product-rating', product: product, show_empty: settings.show_product_rating_if_empty, display_mode: settings.product_rating_mode -%}
     {%- endif -%}
   </div>
 </product-card>
