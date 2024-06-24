@@ -286,6 +286,11 @@ LIQUID
     endfor
   -%}
 
+  <script>
+    console.log("Variant Option: {{ variant_option }}");
+    console.log("Value is displayed: {{ valueIsDisplayed }}");
+  </script>
+
   {%- if option_index == '' -%}
     {%- render 'product-card', product: product, reveal: settings.stagger_products_apparition, hide_product_information: section.settings.hide_product_information, stacked: true -%}
   {%- else -%}
@@ -301,6 +306,12 @@ LIQUID
           endif
         endfor
       -%}
+
+      <script>
+    console.log("Product: {{ product.title }}");
+    console.log("Option Index: {{ option_index }}");
+  </script>
+
       {% unless valueIsDisplayed %}
         {%- assign variant_option_arr = variant_option | append: ';' | split: ';' -%}
         {% assign displayed_values = displayed_values | concat: variant_option_arr %}
