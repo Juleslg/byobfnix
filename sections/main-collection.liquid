@@ -292,6 +292,20 @@ LIQUID
   </div>
 </div>
 
+<style>
+  /* ... other styles ... */
+
+  {%- if section.settings.variant_collection -%}
+    .justify-items-center {
+      justify-items: baseline;
+    }
+  {%- else -%}
+    .justify-items-center {
+      justify-items: safe center;
+    }
+  {%- endif -%}
+</style>
+
 {% schema %}
   {
     "name": "t:sections.main_collection.name",
