@@ -300,9 +300,11 @@ LIQUID
       justify-items: baseline;
     }
 
-    .v-stack gap-6 sm:gap-12 {
-      gap: 1.5rem;
+    @media screen and (min-width: 700px) {
+    .sm\:gap-12 {
+        gap: 1.5rem;
     }
+  }
   {%- else -%}
     .justify-items-center {
       justify-items: safe center;
