@@ -285,7 +285,7 @@ LIQUID
                 {% for option in product.options %}
                 {% if product.options_by_name['Color'].values == null %}
                       <li class="grid__item">
-                      {% render 'card-product',
+                      {% render 'product-card',
                       card_product: product,
                       product_title: product.title,
                       media_aspect_ratio: section.settings.image_ratio,
