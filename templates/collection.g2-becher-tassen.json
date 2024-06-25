@@ -75,12 +75,36 @@
             "hover_background_color": "#000000",
             "hover_text_color": "#ffffff"
           }
+        },
+        "button_gY9iWh": {
+          "type": "button",
+          "settings": {
+            "text": "Felix Butt",
+            "link": "",
+            "background_color": "",
+            "text_color": "",
+            "hover_background_color": "",
+            "hover_text_color": ""
+          }
+        },
+        "button_ErXPqg": {
+          "type": "button",
+          "settings": {
+            "text": "Haha Fart Man",
+            "link": "",
+            "background_color": "",
+            "text_color": "",
+            "hover_background_color": "",
+            "hover_text_color": ""
+          }
         }
       },
       "block_order": [
         "button_U7WNLD",
         "button_4w6ddT",
-        "button_jf8gpF"
+        "button_jf8gpF",
+        "button_gY9iWh",
+        "button_ErXPqg"
       ],
       "custom_css": [
         ".badge--custom {background: white; color: #1c1c1c; padding: 3px 10px;}"
