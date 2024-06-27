@@ -12,6 +12,16 @@
         }
       }
     </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var elements = document.querySelectorAll('.section-spacing.bordered-section');
+      elements.forEach(function(element) {
+        element.style.marginTop = '0';
+        element.style.paddingTop = '0';
+      });
+    });
+  </script>
   
     <div class="section-spacing {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
       <div class="container">
