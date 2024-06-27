@@ -18,9 +18,16 @@
 
       .featured-collections-carousel .scroll-area {
     overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: transparent transparent;
     padding-bottom: 30px;
+  }
+
+  .featured-collections-carousel .scroll-area#hide-scrollbar:not(:hover) {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .featured-collections-carousel .scroll-area#hide-scrollbar:not(:hover)::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
   }
 
   .featured-collections-carousel .scroll-area::-webkit-scrollbar {
@@ -35,10 +42,6 @@
     background-color: transparent;
     border-radius: 20px;
     border: 3px solid transparent;
-  }
-
-  .featured-collections-carousel .scroll-area::-webkit-scrollbar {
-    width: 3px; 
   }
 
   .featured-collections-carousel:hover .scroll-area {
