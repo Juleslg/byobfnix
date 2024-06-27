@@ -56,21 +56,7 @@
       });
     });
 
-    document.addEventListener('DOMContentLoaded', function() {
-    
 
-    var scrollAreas = document.querySelectorAll('.scroll-area');
-    
-    scrollAreas.forEach(function(area) {
-      area.addEventListener('mouseenter', function() {
-        this.style.overflowY = 'scroll';
-      });
-      
-      area.addEventListener('mouseleave', function() {
-        this.style.overflowY = 'auto';
-      });
-    });
-  });
   </script>
   
     <div class="section-spacing {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
