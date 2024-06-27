@@ -11,6 +11,10 @@
           --product-list-items-per-row: {{ section.settings.products_per_row_desktop }};
         }
       }
+
+      #featured-collections-button2 {
+        display: none;
+      }
     </style>
 
 <script>
@@ -92,7 +96,7 @@
                 {%- if block.settings.link_text != blank -%}
                   {%- assign button_link = block.settings.link_url | default: block.settings.collection.url | default: '#' -%}
   
-                  <div class="justify-self-center">
+                  <div id="featured-collections-button2" class="justify-self-center">
                     {%- render 'button', href: button_link, content: block.settings.link_text -%}
                   </div>
                 {%- endif -%}
