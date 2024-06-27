@@ -17,27 +17,27 @@
       }
 
       .scroll-area {
-    overflow: auto;
-    scrollbar-width: none; /* Hide scrollbar for Firefox by default */
+    overflow-y: scroll; /* Always have vertical scrollbar */
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: transparent transparent; /* For Firefox */
     padding-bottom: 30px; /* Add padding to lower the scrollbar */
   }
 
   .scroll-area::-webkit-scrollbar {
     width: 12px; /* For WebKit browsers */
-    display: none; /* Hide scrollbar by default */
-  }
-
-  .scroll-area:hover {
-    scrollbar-width: thin; /* Show scrollbar for Firefox on hover */
-  }
-
-  .scroll-area:hover::-webkit-scrollbar {
-    display: block; /* Show scrollbar for WebKit browsers on hover */
   }
 
   .scroll-area::-webkit-scrollbar-thumb {
-    background-color: #888; /* Color of the scrollbar thumb */
-    border-radius: 10px; /* Rounded corners for the scrollbar thumb */
+    background-color: transparent; /* Transparent by default */
+    border-radius: 10px;
+  }
+
+  .scroll-area:hover::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color of the scrollbar thumb on hover */
+  }
+
+  .scroll-area:hover {
+    scrollbar-color: #888 transparent; /* For Firefox */
   }
 
   .scroll-area::-webkit-scrollbar-thumb:hover {
