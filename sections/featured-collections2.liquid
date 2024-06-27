@@ -17,23 +17,26 @@
       }
 
       .scroll-area {
-        overflow: auto;
-        scrollbar-width: thin; /* For Firefox */
-        padding-bottom: 20px; /* Add padding to lower the scrollbar */
-      }
+    overflow: hidden; /* Hide scrollbar by default */
+    padding-bottom: 20px; /* Add padding to lower the scrollbar */
+  }
 
-      .scroll-area::-webkit-scrollbar {
-        width: 12px; /* For WebKit browsers */
-      }
+  .scroll-area:hover {
+    overflow: auto; /* Show scrollbar on hover */
+  }
 
-      .scroll-area::-webkit-scrollbar-thumb {
-        background-color: #888; /* Color of the scrollbar thumb */
-        border-radius: 10px; /* Rounded corners for the scrollbar thumb */
-      }
+  .scroll-area::-webkit-scrollbar {
+    width: 12px; /* For WebKit browsers */
+  }
 
-      .scroll-area::-webkit-scrollbar-thumb:hover {
-        background-color: #555; /* Color of the scrollbar thumb on hover */
-      }
+  .scroll-area::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color of the scrollbar thumb */
+    border-radius: 10px; /* Rounded corners for the scrollbar thumb */
+  }
+
+  .scroll-area::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Color of the scrollbar thumb on hover */
+  }
     </style>
 
 <script>
