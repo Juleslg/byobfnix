@@ -6881,9 +6881,9 @@ tfoot td {
   display: none;
 } */
 
-.snap-x {
+/* .snap-x {
   scroll-snap-type: x mandatory;
-}
+} */
 
 /* .snap-y {
   scroll-snap-type: y mandatory;
