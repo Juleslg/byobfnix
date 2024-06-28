@@ -6877,17 +6877,19 @@ tfoot td {
   scrollbar-width: none;
 }
 
-
+/* .scroll-area::-webkit-scrollbar, .hide-scrollbar::-webkit-scrollbar {
+  display: none;
+} */
 
 .snap-x {
   scroll-snap-type: x mandatory;
 }
 
-.snap-y {
+/* .snap-y {
   scroll-snap-type: y mandatory;
-}
+} */
 
-.snap-start {
+/* .snap-start {
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
@@ -6895,7 +6897,7 @@ tfoot td {
 .snap-center {
   scroll-snap-align: center;
   scroll-snap-stop: always;
-}
+} */
 
 .hidden, .empty\:hidden:empty {
   display: none;
