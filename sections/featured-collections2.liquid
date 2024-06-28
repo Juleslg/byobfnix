@@ -20,13 +20,15 @@
       @media screen and (min-width: 1000px) {
     .product-list--carousel {
         scroll-snap-type: none;
-        overflow-x: scroll; !important;
-        scrollbar-width: thin; !important;
-        scrollbar-color: #888 #f1f1f1; !important;
+        overflow-x: scroll !important;
+        scrollbar-width: thin !important;
+        scrollbar-color: #888 #f1f1f1 !important;
+        -ms-overflow-style: scrollbar !important;
     }
 
     .product-list--carousel::-webkit-scrollbar {
         height: 8px;
+        display: block !important;
     }
 
     .product-list--carousel::-webkit-scrollbar-track {
