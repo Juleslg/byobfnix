@@ -6877,9 +6877,7 @@ tfoot td {
   scrollbar-width: none;
 }
 
-.scroll-area::-webkit-scrollbar, .hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
+
 
 .snap-x {
   scroll-snap-type: x mandatory;
