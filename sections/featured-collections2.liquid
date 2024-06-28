@@ -17,11 +17,32 @@
       }
 
       
-  @media screen and (min-width: 1000px) {
+      @media screen and (min-width: 1000px) {
     .product-list--carousel {
         scroll-snap-type: none;
+        overflow-x: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #888 #f1f1f1;
+    }
+
+    .product-list--carousel::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .product-list--carousel::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    .product-list--carousel::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 4px;
+    }
+
+    .product-list--carousel::-webkit-scrollbar-thumb:hover {
+        background: #555;
     }
 }
+
     </style>
 
 <script>
