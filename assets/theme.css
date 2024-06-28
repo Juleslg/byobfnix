@@ -6867,10 +6867,10 @@ tfoot td {
 }
 
 .scroll-area {
-  scrollbar-width: none;
+  scrollbar-width: 5px;
   overscroll-behavior-x: contain;
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 
 .hide-scrollbar {
