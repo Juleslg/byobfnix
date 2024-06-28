@@ -6866,7 +6866,7 @@ tfoot td {
   pointer-events: none;
 }
 
-/* .scroll-area {
+.scroll-area {
   scrollbar-width: none;
   overscroll-behavior-x: contain;
   overflow-x: auto;
@@ -6875,7 +6875,7 @@ tfoot td {
 
 .hide-scrollbar {
   scrollbar-width: none;
-} */
+} 
 
 /* .scroll-area::-webkit-scrollbar, .hide-scrollbar::-webkit-scrollbar {
   display: none;
