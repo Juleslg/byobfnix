@@ -13,5 +13,36 @@
     "b2b": true
   },
   "sections": {
-  }
+    "custom_liquid_qh8Ji": {
+      "type": "custom-liquid",
+      "disabled": false,
+      "settings": {
+        "separate_section_with_border": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "liquid": "<p>Write or copy/paste Liquid code</p>",
+        "text_alignment": "center"
+      },
+      "blocks": {
+      },
+      "block_order": [
+
+      ]
+    }
+  },
+  "order": [
+    "custom_liquid_qh8Ji",
+    "slideshow",
+    "featured_collections2_xcpwrY",
+    "17163783643ea04129",
+    "18b98b8f-e4b1-46fb-9d00-051693765ff8",
+    "31e54c15-9859-4992-a081-b05d4f8bca2f",
+    "testimonials2_0_xAMyc7",
+    "64ff7968-5fb2-4559-8431-18c3899971b0",
+    "3919b115-cdfb-4526-b72b-a33cb1964273",
+    "fd67e5f5-5468-45ab-95ce-274c1963032d",
+    "f337dace-5d8d-4170-8cd8-7896caaa0e43",
+    "169684138340ff2bc3",
+    "custom_liquid_dTEhzW"
+  ]
 }
